@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="js/drawRec.js">
+    <title>Document</title>
+</head>
+
+<body class="clearfix">
+    <div class="left">
+        <div class="menu">
+            <ul>
+                <li style="border-top: 1px solid black;">绘制剪裁区域</li>
+                <li id="drawju" onclick="drawrec()">绘制矩形</li>
+                <li id="drawsan" onclick="triangle()">绘制三角形</li>
+                <li id="xian" onclick="xiant()">绘制线条</li>
+                <li id="round" onclick="roundy()">绘制圆弧</li>
+                <li id="two" onclick="two2()">绘制二次贝塞尔曲线</li>
+                <li id="three" onclick="three3()">绘制三次贝塞尔曲线</li>
+                <li id="path" onclick="pathh()">绘制Path</li>
+                <!-- <li id="svg" onclick="svgpath()">绘制svgPath</li> -->
+            </ul>
+        </div>
+        <div class="desc">
+            <ul>
+                <li>
+                    <input id="a" type="text" value="" style="border: 1px solid black;">
+                    <!-- <button id="bt">提交wen</button> -->
+
+                </li>
+                <li id="wen" onclick="zi()">
+                    添加文字
+                </li>
+                <li>
+                    <input id="p" type="text" value="" style="border: 1px solid black;">
+                    <!-- <button id="btt">提交tu</button> -->
+                </li>
+                <li id="tupian" onclick="getImg()">
+                    添加图片
+                    <!-- onclick="tianjia() -->
+                </li>
+                <li>图片缩放
+                    <input id="range" type="range" value="0" min="0" max="10" onclick="draws()">
+                </li>
+                <li>
+                    切片X<input id="range" type="range" value="0" min="0" max="100">
+                </li>
+                <li>
+                    切片Y<input id="range" type="range" value="0" min="0" max="100">
+                </li>
+                <li>
+                    原点坐标X
+                    <input id="range" type="range" value="0" min="0" max="100" class="changX">
+                </li>
+                <li>
+                    原点坐标Y
+                    <input id="range" type="range" value="0" min="0" max="30" class="changY">
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="right">
+        <div class="aniu" style="text-align: center;">
+            <button id="qingchu" onclick="dian()">清除画布</button>
+        </div>
+        <div>
+            <div class="yangshi">
+                <ul class="ui clearfix">
+                    <li><label for="">图层样式</label>
+                        <select name="" id="">
+                    <option value="">选择</option>
+                    <option value="source-over">source-over</option>
+                    <option value="source-in">source-in</option>
+                    <option value="source-out">source-out</option>
+                    </select>
+                    </li>
+                    <li>缩放
+                        <input id="range1" type="range" value="0" min="-1" max="2" step="0.1" class="changeS"></li>
+                    <li>旋转
+                        <input id="range2" type="range" value="0" min="0" max="5" step="1" class="changR"></li>
+                    </li>
+                    <li>透明度
+                        <input id="range3" type="range" value="0.5" min="0.0" max="1.0" step="0.1" class="changT"></li>
+                    </li>
+                    <li>颜色
+                        <input id="range4" type="text" style="border: 1px solid black;">
+                    </li>
+                    <li>线性渐变颜色
+                        <input id="range5" type="text" value="" placeholder="颜色-颜色-颜色" style="border: 1px solid black;">
+                    </li>
+                    <li>
+                        <ul class="xu">
+                            <li>虚线中实线长度
+                                <input id="range6" type="text" value="" style="border: 1px solid black;">
+                            </li>
+                            <li>虚线中空白长度
+                                <input id="range7" type="text" value="" style="border: 1px solid black;">
+                            </li>
+                            <li>虚线起始偏移
+                                <input id="range8" type="text" value="" min="-5" max="5" style="border: 1px solid black;">
+                            </li>
+                        </ul>
+                    </li>
+                    <li>线条宽度
+                        <input id="range9" type="text" value="" style="border: 1px solid black;">
+                    </li>
+                    <li>
+                        <label for="">线条末端样式</label>
+                        <select name="" id="range10">
+                    <option value="">选择</option>
+                    <option value="round">round</option>
+                    <option value="square">square</option>
+                    </select>
+                    </li>
+                    <li>
+                        <label for="">线条间结合处</label>
+                        <select name="" id="range11">
+                    <option value="">选择</option>
+                    <option value="round">round</option>
+                    <option value="bevel">bevel</option>
+                    <option value="miter">miter</option>
+                    </select>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>阴影模糊
+                                <input id="rangea" type="text" value="" style="border: 1px solid black;">
+                            </li>
+                            <li>阴影颜色
+                                <input id="rangeb" type="text" value="" style="border: 1px solid black;">
+                            </li>
+                            <li>阴影偏移
+                                <input id="rangec" type="text" value="" style="border: 1px solid black;">
+                                <input id="ranged" type="text" value="" style="border: 1px solid black;">
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>字号
+                                <input id="rangee" type="text" value="" style="border: 1px solid black;">
+                            </li>
+                            <li>
+                                <label for="">字体</label>
+                                <select name="" id="fontt">
+                                <option value="">选择</option>
+                    <option value="serif">serif</option>
+                    <option value="NSimSun">NSimSun</option>
+                    <option value="FangSong">FangSong</option>
+                    </select>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li>
+                                <label for="">文本对齐选项</label>
+                                <select name="" id="">
+                                    <option value="">选择</option>
+                                    <option value="left">左对齐</option>
+                                    <option value="right">右对齐</option>
+                                    <option value="center">居中</option>
+                    </select>
+                            </li>
+                            <li>
+                                <label for="">基线对齐选项</label>
+                                <select name="" id="">
+                    <option value="">选择</option>
+                    <option value="alphabetic">字母基线</option>
+                    <option value="hanging">hanging</option>
+                    <option value="middle">middle</option>
+                    </select>
+                            </li>
+                            <li>
+                                <label for="">文本方向</label>
+                                <select name="" id="">
+                    <option value="">选择</option>
+                    <option value="ltr">ltr</option>
+                    <option value="rtl">rtl</option>
+                    <!-- <option value="center">居中</option> -->
+                    </select>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>吸色</li>
+                </ul>
+
+            </div>
+        </div>
+        <div class="">
+            <canvas id="canvas" style="background-color:white" width="1000" height="1000"></canvas>
+        </div>
+    </div>
+    <!-- <script src="js/drawRec.js"></script> -->
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        //矩形
+        function drawrec() {
+            type = 'draw';
+            dian();
+            ctx.strokeRect(x, y, 150, 150);
+            ctx.stroke();
+        }
+        //三角形
+        function triangle() {
+            type = 'sanjiao';
+            dian();
+            ctx.moveTo(x, y);
+            ctx.lineTo(125, 45);
+            ctx.lineTo(45, 125);
+            ctx.closePath();
+            ctx.stroke();
+        }
+        //线条
+        function xiant() {
+            type = 'xiant'
+            dian();
+            ctx.moveTo(x, y);
+            ctx.lineTo(100, 75);
+            ctx.closePath();
+            ctx.stroke();
+        }
+        // 圆弧
+        function roundy() {
+            type = 'yuanhu';
+            dian();
+            ctx.arc(x, y, 50, 0, 2 * Math.PI);
+            ctx.stroke()
+
+        }
+        // 二次贝塞尔曲线
+        function two2() {
+            type = "erbei";
+            dian();
+            ctx.quadraticCurveTo(10, 10, x, y);
+            ctx.stroke();
+        }
+        //三次贝塞尔曲线
+        function three3() {
+            type = "sanbei";
+            dian();
+            ctx.beginPath();
+            ctx.moveTo(75, 40);
+            ctx.bezierCurveTo(75, 37, 70, 25, x, y);
+            ctx.fill();
+
+        }
+        //path
+        function pathh() {
+            type = "Path";
+            dian();
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                var rectangle = new Path2D();
+                ctx.translate(x, y);
+                ctx.rotate(r);
+                ctx.scale(sx, sy);
+                ctx.globalAlpha = t;
+                rectangle.rect(x, y, 50, 50);
+                ctx.stroke(rectangle);
+
+            }
+        }
+        //svg
+        // function three3() {
+        //     var canvas = document.getElementById('canvas');
+        //     if (canvas.getContext) {
+        //         var ctx = canvas.getContext('2d');
+        //         const canvas = document.getElementById('canvas');
+        //         const ctx = canvas.getContext('2d');
+        //         let p = new Path2D('M10 10 h 80 v 80 h -80 Z');
+        //         ctx.fill(p);
+        //     }
+        // }
+        //清除画布
+        function dian() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+        //添加文字
+        function getData() {
+            dian();
+            var content = document.getElementById("a");
+            return content.value
+        }
+
+        function zi() {
+            type: "word"
+            var b = getData();
+            // console.log(b);
+            var canvas = document.getElementById('canvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+                ctx.font = "rangeE serif";
+                ctx.fillText(b, 10, 50);
+            }
+        }
+        //添加图片
+        var p = document.getElementById("p");
+        var tupian = document.getElementById("tupian");
+
+        function getImg() {
+            var pp = p.value;
+            var img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 100, 100);
+            }
+            img.src = pp;
+            return pp
+        }
+
+        //图片缩放
+        function draws() {
+            console.log(document.getElementById('p').value);
+            ctx.drawImage(document.getElementById('p').value, 33, 71, 104, 124, 21, 20, 87, 104);
+        }
+
+        //颜色
+        var colorChange = document.getElementById("range4");
+        colorChange.addEventListener("change", function() {
+            const colorValue = colorChange.value;
+            return colorValue
+        });
+        //字号
+        var rangee = document.getElementById("rangee");
+        rangee.addEventListener("change", function() {
+                const rangeE = rangee.value;
+                // console.log(rangeE);
+                switch (type) {
+                    case 'word':
+                        ctx.font = "bold rangeE serif";
+                        var aa = getData();
+                        console.log(getData());
+                        ctx.strokeText(aa, 50, 100);
+                }
+            })
+            //字体
+        var fontt = document.getElementById("fontt")
+        var b = getData()
+        fontt.addEventListener("change", function() {
+                const Fontt = fontt.value;
+                ctx.clearRect(0, 0, 800, 800);
+                ctx.font = "blod 48px serif";
+                ctx.strokeText("哈哈", 100, 100);
+            })
+            //坐标X
+        var changX = document.querySelector('.changX')
+        changX.addEventListener("change", function(e) {
+                x = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        drawrec();
+                        break
+                    case 'xiant':
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        triangle()
+                        break
+                    case 'yuanhu':
+                        roundy();
+                        break
+                    case "erbei":
+                        two2();
+                        break;
+                    case "sanbei":
+                        three3();
+                        break
+                    case "Path":
+                        pathh();
+                        break
+
+                }
+            })
+            //坐标Y
+        var changY = document.querySelector('.changY')
+        changY.addEventListener("change", function(e) {
+                y = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        drawrec()
+                        break
+                    case 'xiant':
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        triangle()
+                        break
+                    case 'yuanhu':
+                        roundy();
+                        break
+                    case "erbei":
+                        two2();
+                        break;
+                    case "sanbei":
+                        three3();
+                        break
+                    case "Path":
+                        pathh();
+                        break
+
+                }
+            })
+            //透明度
+        var changT = document.querySelector('.changT')
+        changT.addEventListener("change", function(e) {
+                t = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.globalAlpha = t;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.globalAlpha = t;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.globalAlpha = t;
+                        triangle()
+                        break
+                    case 'yuanhu':
+                        ctx.globalAlpha = t;
+                        ctx.arc(x, y, 50, 0, 2 * Math.PI);
+                        ctx.stroke()
+                        break
+                    case "erbei":
+                        ctx.globalAlpha = t;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.globalAlpha = t;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.globalAlpha = t;
+                        pathh();
+                        break
+
+                }
+            })
+            //旋转
+        var changR = document.querySelector('.changR')
+        changR.addEventListener("change", function(e) {
+                var r = Number(e.target.value);
+
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.rotate(r * Math.PI / 180);
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.rotate(r * Math.PI / 180);
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.rotate(r * Math.PI / 180);
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.rotate(r * Math.PI / 180);
+                        roundy();
+                        break
+                    case "erbei":
+                        ctx.rotate(r * Math.PI / 180);
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.rotate(r * Math.PI / 180);
+                        three3();
+                        break
+                    case "Path":
+                        ctx.rotate(r * Math.PI / 180);
+                        pathh();
+                        break
+
+                }
+            })
+            //缩放
+        var changeS = document.querySelector('.changeS')
+        changeS.addEventListener("change", function(e) {
+                var sx = Number(e.target.value);
+                var sy = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.scale(sx, sy);
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.scale(sx, sy);
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.scale(sx, sy);
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.scale(sx, sy);
+                        roundy();
+                        break
+                    case "erbei":
+                        ctx.scale(sx, sy);
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.scale(sx, sy);
+                        three3();
+                        break
+                    case "Path":
+                        ctx.scale(sx, sy);
+                        pathh();
+                        break
+
+                }
+            })
+            //虚线
+        var changx = document.getElementById('range6')
+        changx.addEventListener("change", function(e) {
+                xx = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        ctx.arc(x, y, 50, 0, 2 * Math.PI);
+                        ctx.stroke()
+                        break
+                    case "erbei":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        pathh();
+                        break
+
+                }
+            })
+            //虚线空白长度
+        var changy = document.getElementById('range7');
+        changy.addEventListener("change", function(e) {
+                xy = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        ctx.arc(x, y, 50, 0, 2 * Math.PI);
+                        ctx.stroke()
+                        break
+                    case "erbei":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        pathh();
+                        break
+
+                }
+            })
+            //虚线起始偏移
+        var changz = document.getElementById('range8')
+        changz.addEventListener("change", function(e) {
+                xz = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        ctx.arc(x, y, 50, 0, 2 * Math.PI);
+                        ctx.stroke()
+                        break
+                    case "erbei":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.setLineDash([xx, xy]);
+                        ctx.lineDashOffset = xz;
+                        pathh();
+                        break
+
+                }
+            })
+            //线条宽度
+        var range9 = document.getElementById('range9')
+        range9.addEventListener("change", function(e) {
+                w = Number(e.target.value);
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.lineWidth = w;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.lineWidth = w;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.lineWidth = w;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.lineWidth = w;
+                        ctx.arc(x, y, 50, 0, 2 * Math.PI);
+                        ctx.stroke()
+                        break
+                    case "erbei":
+                        ctx.lineWidth = w;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.lineWidth = w;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.lineWidth = w;
+                        pathh();
+                        break
+
+                }
+            })
+            //线条末端样式
+        const range10 = document.getElementById('range10')
+        range10.addEventListener("change", function(e) {
+                l = e.target.value;
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.lineCap = l;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.lineCap = l;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.lineCap = l;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.lineCap = l;
+                        ctx.arc(x, y, 50, 0, 2 * Math.PI);
+                        ctx.stroke()
+                        break
+                    case "erbei":
+                        ctx.lineCap = l;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.lineCap = l;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.lineCap = l;
+                        pathh();
+                        break
+
+                }
+            })
+            //线条连接
+        const range11 = document.getElementById('range11');
+        range11.addEventListener("change", function(e) {
+                j = e.target.value;
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.lineJoin = j;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.lineJoin = j;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.lineJoin = j;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.moveTo(x, y);
+                        roundy();
+                        break
+                    case "erbei":
+                        ctx.moveTo(x, y);
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.moveTo(x, y);
+                        three3();
+                        break
+                    case "Path":
+                        ctx.moveTo(x, y);
+                        pathh();
+                        break
+
+                }
+            })
+            //阴影模糊
+        var ym = 0;
+        var rangea = document.getElementById('rangea')
+        rangea.addEventListener("change", function(e) {
+                ym = e.target.value;
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.moveTo(x, y);
+                        // ctx.lineWidth = 10;
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        roundy();
+                        break
+                    case "erbei":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        pathh();
+                        break
+
+                }
+            })
+            //阴影颜色
+        var yc = 0;
+        var rangeb = document.getElementById('rangeb')
+        rangeb.addEventListener("change", function(e) {
+                yc = e.target.value;
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        roundy();
+                        break
+                    case "erbei":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        pathh();
+                        break
+
+                }
+            })
+            //阴影偏移X
+        var yx = 0;
+        var rangec = document.getElementById('rangec')
+        rangec.addEventListener("change", function(e) {
+                yx = e.target.value;
+                dian();
+                switch (type) {
+                    case 'draw':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        drawrec();
+                        break
+                    case 'xiant':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        xiant();
+                        break
+                    case 'sanjiao':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        triangle();
+                        break
+                    case 'yuanhu':
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        roundy();
+                        break
+                    case "erbei":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        two2();
+                        break;
+                    case "sanbei":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        three3();
+                        break
+                    case "Path":
+                        ctx.shadowOffsetX = yx;
+                        ctx.shadowOffsetY = yy;
+                        ctx.shadowBlur = ym;
+                        ctx.shadowColor = yc;
+                        pathh();
+                        break
+
+                }
+            })
+            //阴影模糊y
+        var yy = 0;
+        var ranged = document.getElementById('ranged')
+        ranged.addEventListener("change", function(e) {
+            yy = e.target.value;
+            dian();
+            switch (type) {
+                case 'draw':
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    drawrec();
+                    break
+                case 'xiant':
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    xiant();
+                    break
+                case 'sanjiao':
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    triangle();
+                    break
+                case 'yuanhu':
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    roundy();
+                    break
+                case "erbei":
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    two2();
+                    break;
+                case "sanbei":
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    three3();
+                    break
+                case "Path":
+                    ctx.shadowOffsetX = yx;
+                    ctx.shadowOffsetY = yy;
+                    ctx.shadowBlur = ym;
+                    ctx.shadowColor = yc;
+                    pathh();
+                    break
+
+            }
+        })
+    </script>
+</body>
+
+</html>

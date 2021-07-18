@@ -1,0 +1,106 @@
+.left {
+    width: 150px;
+    height: 100%;
+    float: left;
+    /* border: 1px solid red; */
+}
+
+.left ul li {
+    background-color: #E5E5E5;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 5px;
+    border: 1px solid black;
+    border-top: none;
+    cursor: pointer;
+}
+
+.left .menu ul li {
+    height: 20px;
+}
+
+.desc ul li {
+    padding-top: 0;
+}
+
+.desc ul li p {
+    height: 20px;
+}
+
+#wen {
+    background-color: #E5E5E5;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 5px;
+    border: 1px solid black;
+    border-top: none;
+    cursor: pointer;
+}
+
+#tupain {
+    background-color: #E5E5E5;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 5px;
+    border: 1px solid black;
+    border-top: none;
+    cursor: pointer;
+}
+
+.right {
+    float: left;
+    margin: 0;
+    padding: 0;
+    width: 1300px;
+    /* width:100%; */
+}
+
+.aniu {
+    background-color: antiquewhite;
+}
+
+.desc {
+    height: 20px;
+}
+
+
+/* #canvas {
+    width: 600px;
+    height: 600px;
+    background-color: lightblue;
+} */
+
+.right .yangshi {
+    background-color: white;
+}
+
+.right .yangshi .ui {
+    /* height: 25px; */
+    /* width: px; */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.ui li {
+    width: 90px;
+    float: left;
+    /* display: block; */
+}
+
+.ui #range {
+    width: 80px;
+}
+
+.clearfix::after {
+    content: "";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0;
+    zoom: 1;
+}
+
+.right input {
+    width: 90px;
+}
